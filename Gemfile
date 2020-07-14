@@ -6,14 +6,16 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'pg'
 gem 'puma', '~> 4.1'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'dry-initializer'
+gem 'dry-monads'
 
 group :development, :test do
   gem 'pry-byebug'
+  gem 'factory_bot_rails'
 end
 
 group :test do
   gem 'rspec-rails', '~> 4.0.1'
-  gem 'factory_bot_rails'
   gem 'faker'
   gem 'database_cleaner-active_record'
 end
