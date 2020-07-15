@@ -90,6 +90,8 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
+    jbuilder (2.10.0)
+      activesupport (>= 5.0.0)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -217,6 +219,7 @@ DEPENDENCIES
   dry-monads
   factory_bot_rails
   faker
+  jbuilder
   listen (~> 3.2)
   pg
   pry-byebug
