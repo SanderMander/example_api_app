@@ -12,12 +12,13 @@ gem 'jbuilder'
 
 group :development, :test do
   gem 'pry-byebug'
+  gem 'faker'
   gem 'factory_bot_rails'
 end
 
 group :test do
   gem 'rspec-rails', '~> 4.0.1'
-  gem 'faker'
+  
   gem 'database_cleaner-active_record'
 end
 
