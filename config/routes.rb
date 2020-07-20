@@ -9,6 +9,7 @@ Rails.application.routes.draw do
           get :remaining, to: 'library#remaining'
         end
       end
+      resources :purchases, only: [:create]
     end
   end
 end

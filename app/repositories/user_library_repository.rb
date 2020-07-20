@@ -1,13 +1,7 @@
-class UserLibraryRepository
-  extend Dry::Initializer
-  include Dry::Monads[:result, :do]
-
+class UserLibraryRepository < Service
+  
   param :user_id
   param :type
-
-  def self.call(user_id, type)
-    new(user_id, type).call
-  end
 
   def call
     Success({
