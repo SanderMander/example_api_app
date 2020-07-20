@@ -37,15 +37,33 @@ describe 'Users library requests', type: :request do
         {
           type: 'seasons',
           results:[
-            build_stubbed(:season),
-            build_stubbed(:season)
+            create(:season),
+            create(:season)
           ]
         }
+      end
+      before do
+        repo_response[:results].each do |season|
+          create_list :episode, 2, season: season
+        end
       end
   
       let(:example_response) do
         {
-          'seasons' => repo_response[:results].map{|s| {'title' => s.title, 'plot' => s.plot, 'number' => s.number}}
+          'seasons' => repo_response[:results].map do |s| 
+            {
+              'title' => s.title, 
+              'plot' => s.plot, 
+              'number' => s.number,
+              'episodes' => s.episodes.map do |e|
+                {
+                  'title' => e.title,
+                  'plot' => e.plot,
+                  'number' => e.number
+                }
+              end
+            }
+          end
         }
       end
   
