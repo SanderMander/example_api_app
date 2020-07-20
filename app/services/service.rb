@@ -1,3 +1,4 @@
+# base services class
 class Service
   extend Dry::Initializer
   include Dry::Monads[:result, :do]

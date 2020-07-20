@@ -1,5 +1,6 @@
 json.purchase do
   json.id @purchase.id
+  json.user_id @purchase.user_id
   json.content_id @purchase.content_id
   json.content_type @purchase.content_type
   json.quality @purchase.quality

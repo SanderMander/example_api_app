@@ -9,7 +9,7 @@ class Api::V1::PurchasesController < ApplicationController
 
   private
     def purchase_params
-      params.require(:purchase).permit(:content_id, :content_type, :quality).to_hash
+      params.require(:purchase).permit(:content_id, :content_type, :quality, :price).to_hash
     end
 
     def current_user

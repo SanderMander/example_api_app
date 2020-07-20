@@ -27,6 +27,7 @@ describe 'Purchases requests', type: :request do
         {
           'purchase' => {
             'id' => purchase.id,
+            'user_id' => purchase.user_id,
             'content_id' => purchase.content_id,
             'content_type' => purchase.content_type,
             'quality' => purchase.quality,

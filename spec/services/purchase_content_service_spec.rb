@@ -45,10 +45,10 @@ describe PurchaseContentService, type: :service do
   let(:wait_period) { 2.days }
   let(:params) do
     {
-      content_id: content.id,
-      content_type: content.class.name,
-      price: price,
-      quality: 'sd'
+      'content_id' => content.id,
+      'content_type' => content.class.name,
+      'price' => price,
+      'quality' => 'sd'
     }
   end
 
@@ -79,10 +79,10 @@ describe PurchaseContentService, type: :service do
     let(:price) { described_class::CONTENT_PRICE }
     let(:params) do
       {
-        content_id: 2,
-        content_type: 'Season',
-        price: price,
-        quality: 'sd'
+        'content_id' => 2,
+        'content_type' => 'Season',
+        'price' => price,
+        'quality' => 'sd'
       }
     end
     let(:error_message) { :content_not_found }
@@ -94,10 +94,10 @@ describe PurchaseContentService, type: :service do
     let(:content) { create :episode }
     let(:params) do
       {
-        content_id: content.id,
-        content_type: content.class.name,
-        price: price,
-        quality: 'sd'
+        'content_id' => content.id,
+        'content_type' => content.class.name,
+        'price' => price,
+        'quality' => 'sd'
       }
     end
     let(:error_message) { :wrong_content_type }
@@ -108,10 +108,10 @@ describe PurchaseContentService, type: :service do
     let(:price) { described_class::CONTENT_PRICE }
     let(:params) do
       {
-        content_id: content.id,
-        content_type: content.class.name,
-        price: price,
-        quality: 'sd'
+        'content_id' => content.id,
+        'content_type' => content.class.name,
+        'price' => price,
+        'quality' => 'sd'
       }
     end
     let!(:content) { create :movie }

@@ -1,3 +1,5 @@
+# Repository which return user purchased content
+# In Futer it can be splited to several repos one per content type
 class UserLibraryRepository < Service
   
   param :user_id
@@ -28,7 +30,7 @@ class UserLibraryRepository < Service
     end
 
     def user_seasons
-      purchased_seasons.order('seasons.created_at desc')
+      purchased_seasons.includes(:episodes).order('seasons.created_at desc')
     end
 
     def user_all_content
