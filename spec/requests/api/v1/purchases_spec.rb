@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe 'Purchases requests', type: :request do
   include Dry::Monads::Result::Mixin
-  let(:user) { build_stubbed :user }
+  let!(:user) { create :user }
 
   describe 'POST purchases' do
     context 'purchase completed successfull' do
       before do
-        expect(PurchaseContentService).to receive(:call).with(user.id.to_s, params[:purchase]).and_return(Success(purchase))
+        expect(PurchaseContentService).to receive(:call).with(kind_of(User), params[:purchase]).and_return(Success(purchase))
       end
       let(:content_id) { create(:movie).id }
       let(:content_type) { 'Movie' }
@@ -41,7 +41,7 @@ describe 'Purchases requests', type: :request do
 
     context 'purchase completed with errors' do
       before do
-        expect(PurchaseContentService).to receive(:call).with(user.id.to_s, params[:purchase]).and_return(Failure(error_message))
+        expect(PurchaseContentService).to receive(:call).with(kind_of(User), params[:purchase]).and_return(Failure(error_message))
       end
       let(:path) { "purchases"}
       let(:params) do
