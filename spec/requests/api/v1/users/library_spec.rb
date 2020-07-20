@@ -12,15 +12,18 @@ describe 'Users library requests', type: :request do
       let(:path) { "users/#{user.id}/movies"}
       let(:filter_type) { 'movies' }
       let(:repo_response) do
-        [
-          build_stubbed(:movie),
-          build_stubbed(:movie)
-        ]
+        {
+          type: 'movies',
+          results:[
+            build_stubbed(:movie),
+            build_stubbed(:movie)
+          ]
+        }
       end
   
       let(:example_response) do
         {
-          'movies' => repo_response.map{|m| {'title' => m.title, 'plot' => m.plot}}
+          'movies' => repo_response[:results].map{|m| {'title' => m.title, 'plot' => m.plot}}
         }
       end
   
@@ -31,41 +34,48 @@ describe 'Users library requests', type: :request do
       let(:path) { "users/#{user.id}/seasons"}
       let(:filter_type) { 'seasons' }
       let(:repo_response) do
-        [
-          build_stubbed(:season),
-          build_stubbed(:season)
-        ]
+        {
+          type: 'seasons',
+          results:[
+            build_stubbed(:season),
+            build_stubbed(:season)
+          ]
+        }
       end
   
       let(:example_response) do
         {
-          'seasons' => repo_response.map{|s| {'title' => s.title, 'plot' => s.plot, 'number' => s.number}}
+          'seasons' => repo_response[:results].map{|s| {'title' => s.title, 'plot' => s.plot, 'number' => s.number}}
         }
       end
   
       it_behaves_like 'api GET request'
     end
   
-    describe 'users/:id/remaining' do
-      let(:path) { "users/#{user.id}/remaining"}
-      let(:filter_type) { 'remaining' }
+    describe 'users/:id/all' do
+      let(:path) { "users/#{user.id}/all"}
+      let(:filter_type) { 'all' }
       let(:repo_response) do
         {
-          movies: [
-            build_stubbed(:movie),
-            build_stubbed(:movie)
-          ],
-          seasons: [
-            build_stubbed(:season),
-            build_stubbed(:season)
-          ],
+          type: 'all',
+          results:
+          {
+            movies: [
+              build_stubbed(:movie),
+              build_stubbed(:movie)
+            ],
+            seasons: [
+              build_stubbed(:season),
+              build_stubbed(:season)
+            ]
+          }
         }
       end
   
       let(:example_response) do
         {
-          'movies' => repo_response[:movies].map{|m| {'title' => m.title, 'plot' => m.plot}},
-          'seasons' => repo_response[:seasons].map{|s| {'title' => s.title, 'plot' => s.plot, 'number' => s.number}}
+          'movies' => repo_response[:results][:movies].map{|m| {'title' => m.title, 'plot' => m.plot}},
+          'seasons' => repo_response[:results][:seasons].map{|s| {'title' => s.title, 'plot' => s.plot, 'number' => s.number}}
         }
       end
   

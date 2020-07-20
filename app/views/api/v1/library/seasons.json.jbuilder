@@ -1,4 +1,4 @@
-json.seasons @collection do |season|
+json.seasons @seasons do |season|
   json.title season.title
   json.plot season.plot
   json.number season.number

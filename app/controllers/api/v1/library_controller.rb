@@ -1,17 +1,23 @@
 class Api::V1::LibraryController < ApplicationController
 
-  before_action :set_user
+  before_action :set_user, :load_collection
 
   def movies
-    render_response(UserLibraryRepository.call(@user.id, 'movies'))
+    @movies = @collection[:results]
   end
 
   def seasons
-    render_response(UserLibraryRepository.call(@user.id, 'seasons'))
+    @seasons = @collection[:results]
+  end
+
+  def all
+    @seasons = @collection[:results][:seasons]
+    @movies = @collection[:results][:movies]
   end
 
   def remaining
-    render_response(UserLibraryRepository.call(@user.id, 'remaining'))
+    @seasons = @collection[:results][:seasons]
+    @movies = @collection[:results][:movies]
   end
 
   private
@@ -20,12 +26,10 @@ class Api::V1::LibraryController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def render_response(collection)
-      if collection.success?
-        @collection = collection.value!
-        render action: params[:action]
-      else
-        render_error(collection.failure)
-      end
+    def load_collection
+      collection = UserLibraryRepository.call(@user.id, params[:action])
+      return render_error(collection.failure) unless collection.success?
+      @collection = collection.value!
     end
+
 end
