@@ -39,7 +39,6 @@ shared_examples 'PurchaseContentService failed call' do
 end
 
 describe PurchaseContentService, type: :service do
-
   let(:service_response) { described_class.call(user, params) }
   let(:user) { create(:user) }
   let(:wait_period) { 2.days }
@@ -54,7 +53,7 @@ describe PurchaseContentService, type: :service do
 
   context 'valid params' do
     let(:price) { described_class::CONTENT_PRICE }
-    
+
     context 'movie' do
       let(:content) { create :movie }
       it_behaves_like 'PurchaseContentService success call'
@@ -64,7 +63,6 @@ describe PurchaseContentService, type: :service do
       let(:content) { create :season }
       it_behaves_like 'PurchaseContentService success call'
     end
-    
   end
 
   context 'prices are not equal' do
@@ -72,7 +70,6 @@ describe PurchaseContentService, type: :service do
     let(:content) { create :movie }
     let(:error_message) { :prices_are_not_equal }
     it_behaves_like 'PurchaseContentService failed call'
-    
   end
 
   context 'content not found' do

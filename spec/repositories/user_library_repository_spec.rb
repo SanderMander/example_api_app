@@ -19,19 +19,18 @@ describe UserLibraryRepository, type: :service do
           create(:movie, created_at: 1.hour.ago)
         ]
       end
-   
+
       it 'return records ordered by created_at' do
         expect(results.first.id).to eq(user_content[1].id)
       end
     end
     context 'user content blank' do
-      let!(:user_content){ [] }
-  
+      let!(:user_content) { [] }
+
       it 'return empty results' do
         expect(results).to eq([])
       end
     end
-
   end
 
   describe 'seasons' do
@@ -43,15 +42,15 @@ describe UserLibraryRepository, type: :service do
           create(:season, created_at: 1.hour.ago)
         ]
       end
-  
+
       it 'return records ordered by created_at' do
         expect(results.first.id).to eq(user_content[1].id)
       end
     end
 
     context 'user content blank' do
-      let!(:user_content){ [] }
-  
+      let!(:user_content) { [] }
+
       it 'return empty results' do
         expect(results).to eq([])
       end
@@ -71,23 +70,23 @@ describe UserLibraryRepository, type: :service do
         ]
       end
       let(:user_movies) do
-        user_content.select{|c| c.class.name == 'Movie'}
+        user_content.select { |c| c.class.name == 'Movie' }
       end
       let(:user_seasons) do
-        user_content.select{|c| c.class.name == 'Season'}
+        user_content.select { |c| c.class.name == 'Season' }
       end
-  
+
       it 'return records ordered by created_at' do
         expect(results[:seasons].first.id).to eq(user_seasons[1].id)
       end
-  
+
       it 'return records ordered by created_at' do
         expect(results[:movies].first.id).to eq(user_movies[1].id)
       end
     end
-    
+
     context 'user content blank' do
-      let!(:user_content){ [] }
+      let!(:user_content) { [] }
 
       it 'return empty results' do
         expect(results[:seasons]).to eq([])
@@ -109,23 +108,23 @@ describe UserLibraryRepository, type: :service do
       end
 
       let(:user_movies) do
-        user_content.select{|c| c.class.name == 'Movie'}
+        user_content.select { |c| c.class.name == 'Movie' }
       end
       let(:user_seasons) do
-        user_content.select{|c| c.class.name == 'Season'}
+        user_content.select { |c| c.class.name == 'Season' }
       end
-  
+
       it 'return records ordered by available_until' do
         expect(results[:seasons].first.id).to eq(user_seasons[1].id)
       end
-  
+
       it 'return records ordered by available_until' do
         expect(results[:movies].first.id).to eq(user_movies[1].id)
       end
     end
-    
+
     context 'user content blank' do
-      let!(:user_content){ [] }
+      let!(:user_content) { [] }
 
       it 'return empty results' do
         expect(results[:seasons]).to eq([])

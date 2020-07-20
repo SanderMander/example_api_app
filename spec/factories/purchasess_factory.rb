@@ -3,7 +3,7 @@ FactoryBot.define do
     content factory: :movie
     user factory: :user
     expired { false }
-    price {2.99}
+    price { 2.99 }
     quality { 'sd' }
     available_until { 3.days.from_now }
   end

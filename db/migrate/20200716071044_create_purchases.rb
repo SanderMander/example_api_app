@@ -12,7 +12,7 @@ class CreatePurchases < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_index :purchases, [:user_id, :content_type, :content_id], unique: true
-    add_index :purchases, [:user_id, :expired]
+    add_index :purchases, %i[user_id content_type content_id], unique: true
+    add_index :purchases, %i[user_id expired]
   end
 end

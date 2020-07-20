@@ -11,7 +11,7 @@ describe 'Purchases requests', type: :request do
       end
       let(:content_id) { create(:movie).id }
       let(:content_type) { 'Movie' }
-      let(:path) { "purchases"}
+      let(:path) { 'purchases' }
       let(:params) do
         {
           user_id: user.id,
@@ -22,7 +22,7 @@ describe 'Purchases requests', type: :request do
           }
         }
       end
-      let(:purchase) { build_stubbed :purchase, content_id: content_id, content_type: content_type, user: user, quality: 'sd'}
+      let(:purchase) { build_stubbed :purchase, content_id: content_id, content_type: content_type, user: user, quality: 'sd' }
       let(:example_response) do
         {
           'purchase' => {
@@ -44,7 +44,7 @@ describe 'Purchases requests', type: :request do
       before do
         expect(PurchaseContentService).to receive(:call).with(kind_of(User), params[:purchase]).and_return(Failure(error_message))
       end
-      let(:path) { "purchases"}
+      let(:path) { 'purchases' }
       let(:params) do
         {
           user_id: user.id,
