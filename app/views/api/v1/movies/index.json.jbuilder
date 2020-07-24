@@ -1,0 +1,1 @@
+json.movies @movies, partial: 'movie', as: :movie

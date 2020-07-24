@@ -93,7 +93,20 @@ describe 'Users library requests', type: :request do
       let(:example_response) do
         {
           'movies' => repo_response[:results][:movies].map { |m| { 'title' => m.title, 'plot' => m.plot } },
-          'seasons' => repo_response[:results][:seasons].map { |s| { 'title' => s.title, 'plot' => s.plot, 'number' => s.number } }
+          'seasons' => repo_response[:results][:seasons].map do |s| 
+            { 
+              'title' => s.title, 
+              'plot' => s.plot, 
+              'number' => s.number,
+              'episodes' => s.episodes.map do |e|
+                {
+                  'title' => e.title,
+                  'plot' => e.plot,
+                  'number' => e.number
+                }
+              end
+            }
+          end
         }
       end
 

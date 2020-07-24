@@ -10,6 +10,9 @@ Rails.application.routes.draw do
         end
       end
       resources :purchases, only: [:create]
+      resources :movies, only: [:index]
+      resources :seasons, only: [:index]
+      get 'content', to: 'content#index'
     end
   end
 end

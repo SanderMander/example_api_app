@@ -48,14 +48,10 @@ class UserLibraryRepository < Service
   end
 
   def purchased_movies
-    Movie.joins(
-      "INNER JOIN purchases ON movies.id = purchases.content_id AND purchases.content_type = 'Movie'"
-    ).where(purchases: { expired: false, user_id: user_id })
+    Movie.joins(:purchases).where(purchases: { expired: false, user_id: user_id })
   end
 
   def purchased_seasons
-    Season.joins(
-      "INNER JOIN purchases ON seasons.id = purchases.content_id AND purchases.content_type = 'Season'"
-    )
+    Season.joins(:purchases).where(purchases: { expired: false, user_id: user_id })
   end
 end
